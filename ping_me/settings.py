@@ -13,12 +13,14 @@ SECRET_KEY = ')u0m497k%@65$wl!+-_-9#fhkrk@@(m4v0_-4kx$6_2!to1qnq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +58,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ping_me.wsgi.application'
+ASGI_APPLICATION = "ping_me.routing.application"
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
