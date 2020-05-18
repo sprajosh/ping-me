@@ -1,9 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from .models import Message, ChatRoom, Contact
 from channels.db import database_sync_to_async
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 
 User = get_user_model()
 
