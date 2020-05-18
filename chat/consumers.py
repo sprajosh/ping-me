@@ -73,10 +73,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         data = json.loads(text_data)
-        print(data)
+        print(f"GOT DATA: {data}")
         await self.commands[data['command']](self, data)
 
     # Receive message from room group
     async def chat_message(self, event):
         message = event['message']
-        self.send(text_data=json.dumps(message))
+        await self.send(text_data=json.dumps(message))
